@@ -1,10 +1,10 @@
-//
+//--------------------------------------------------------------
 //  CalculatorViewController.m
 //  Calculator
 //
 //  Created by David Owens on 09/02/2012.
 //  Copyright (c) 2012 Telefonica O2 Uk. All rights reserved.
-//
+//--------------------------------------------------------------
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h" 
@@ -24,13 +24,12 @@
 @synthesize brain = _brain;
 
 // Lazy instaniatiom of calculatorbrain
-
 - (CalculatorBrain *)brain{
     if (!_brain) _brain =[[CalculatorBrain alloc] init];
     return _brain;
 }
 
-
+//Update display as each key is pressed...
 - (IBAction)digitPressed:(UIButton *)sender {
     NSString *digit = [sender currentTitle];
     if (self.userIsInTheMiddleOfEnteringANumber){
