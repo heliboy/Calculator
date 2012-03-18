@@ -70,6 +70,8 @@
     self.display.text =[NSString stringWithFormat:@"%g", result];
     
 }
+
+// This routine will clear all the displays...
 - (IBAction)allClear {
     double result =[self.brain performClear];
     self.display.text =[NSString stringWithFormat:@"%g", result];
