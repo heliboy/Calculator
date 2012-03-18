@@ -11,19 +11,17 @@
 
 @interface CalculatorViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
-@property (nonatomic) BOOL decimalPoint;
 @property (nonatomic, strong) CalculatorBrain *brain;
 @end
 
 @implementation CalculatorViewController
 
-@synthesize display = _display;
-@synthesize smalldisplay = _smalldisplay;
-@synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
-@synthesize decimalPoint =_decimalPoint;
-@synthesize brain = _brain;
+@synthesize display = _display;                 //main display
+@synthesize smalldisplay = _smalldisplay;       //Small display
+@synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;        //In middle of a number     
+@synthesize brain = _brain;                     //Class implementation
 
-// Lazy instaniatiom of calculatorbrain
+// Lazy instaniatiom of calculator brain
 - (CalculatorBrain *)brain{
     if (!_brain) _brain =[[CalculatorBrain alloc] init];
     return _brain;
@@ -59,11 +57,13 @@
     //NSLog(@"user touched %@", digit);
 }
 
+//Stop entering a number and start on the next
 - (IBAction)enterPressed{
     [self.brain pushOperand:[self.display.text doubleValue]];
     self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
+//Clears the last character entered into the array & displays..
 - (IBAction)clearPress {
     double result =[self.brain performClear];
     self.display.text =[NSString stringWithFormat:@"%g", result];
@@ -72,22 +72,22 @@
 
 // This routine will clear all the displays...
 - (IBAction)allClear {
-    double result =[self.brain performClear];
-    self.display.text =[NSString stringWithFormat:@"%g", result];
-    self.smalldisplay.text =[NSString stringWithFormat:@"%g", result];
-    
+    //double result =[self.brain allClear];
+    [self.brain allClear];
+    self.display.text =[NSString stringWithFormat:@"0"];
+    self.smalldisplay.text =[NSString stringWithFormat:@"0"];
 }
 
+//Mathematical operation pressed, time to action it...
 - (IBAction)operationPressed:(id)sender {
     if (self.userIsInTheMiddleOfEnteringANumber) {
         [self enterPressed];
-        //self.display.text = [self.display.text stringByAppendingFormat:id];
     }
     NSString *operation =[sender currentTitle];
     self.smalldisplay.text =[self.smalldisplay.text stringByAppendingFormat:[NSString stringWithFormat:@" %@ ", operation]];
     double result = [self.brain performOperation:operation];
     self.display.text =[NSString stringWithFormat:@"%g", result];
-    self.smalldisplay.text =[self.smalldisplay.text stringByAppendingFormat:[NSString stringWithFormat:@"= %g", result]];
+    self.smalldisplay.text =[self.smalldisplay.text stringByAppendingFormat:[NSString stringWithFormat:@"= %g ", result]];
 }
 
 

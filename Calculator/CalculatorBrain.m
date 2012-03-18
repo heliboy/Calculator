@@ -1,10 +1,10 @@
-//
+//-------------------------------------------------------------
 //  CalculatorBrain.m
 //  Calculator
 //
 //  Created by David Owens on 10/02/2012.
 //  Copyright (c) 2012 Telefonica O2 Uk. All rights reserved.
-//
+//-------------------------------------------------------------
 
 #import "CalculatorBrain.h"
 #define PI      3.14159265 /* pi */
@@ -14,7 +14,6 @@
 @end
 
 @implementation CalculatorBrain
-
 @synthesize operandStack = _operandStack;
 
 //setter defined, we don't require getter as @synthesize is enough...
@@ -25,17 +24,20 @@
     return _operandStack;
 }
 
+//Push Operand from the array
 - (void)pushOperand:(double)operand{
     NSNumber *operandObject = [NSNumber numberWithDouble:operand];
     [self.operandStack addObject:operandObject];
 }
 
+//Pop Operand from the array
 - (double)popOperand{
     NSNumber *operandObject = [self.operandStack lastObject];
     if (operandObject) [self.operandStack removeLastObject];
     return [operandObject doubleValue];
 }
 
+//Clear the last charater
 - (double)performClear{
     double result = 0;
     NSNumber *operandObject = [self.operandStack lastObject];
@@ -49,6 +51,12 @@
     }
 }
 
+//Empty the array
+- (void)allClear{
+    [self.operandStack removeAllObjects];
+}
+
+//Perform mathematical operation...
 - (double)performOperation:(NSString *)operation{
     double result = 0;
 
@@ -84,7 +92,6 @@
     }
     
     [self pushOperand:result];
-    
     return result;
 }
 
