@@ -7,7 +7,8 @@
 //
 
 #import "CalculatorBrain.h"
-
+#define PI      3.14159265 /* pi */
+//#define M_PI    3.14159265358979323846264338327950288   /* pi */
 @interface CalculatorBrain()
 @property (nonatomic, strong) NSMutableArray *operandStack;
 @end
@@ -29,11 +30,60 @@
     [self.operandStack addObject:operandObject];
 }
 
+- (double)popOperand{
+    NSNumber *operandObject = [self.operandStack lastObject];
+    if (operandObject) [self.operandStack removeLastObject];
+    return [operandObject doubleValue];
+}
 
-- (double)performOperation:(NSString *)operations{
+- (double)performClear{
     double result = 0;
-    
+    NSNumber *operandObject = [self.operandStack lastObject];
+    if (operandObject) [self.operandStack removeLastObject]; 
+    operandObject = [self.operandStack lastObject];
+    if (operandObject) {
+        [self.operandStack removeLastObject];
+        return [operandObject doubleValue];
+    } else{
+        return result;
+    }
+}
+
+- (double)performOperation:(NSString *)operation{
+    double result = 0;
+
     // perfrom the operation here, store answer in result
+    if([operation isEqualToString:@"+"]) {
+        result = [self popOperand] + [self popOperand];
+    } else if([operation isEqualToString:@"*" ]){
+        result =[self popOperand] * [self popOperand];
+    } else if([operation isEqualToString:@"-"]){
+        double subtrahend = [self popOperand];
+        result =[self popOperand] - subtrahend;
+    } else if([operation isEqualToString:@"/"]){
+        double divisor = [self popOperand];
+        if (divisor) result =[self popOperand] / divisor;
+    } else if([operation isEqualToString:@"cos"]){
+        //double divisor = [self popOperand];
+        result = cos([self popOperand]);
+    } else if([operation isEqualToString:@"sin"]){
+        //double divisor = [self popOperand];
+        result = sin([self popOperand]);
+    } else if([operation isEqualToString:@"tan"]){
+        //double divisor = [self popOperand];
+        result = tan([self popOperand]);
+    } else if([operation isEqualToString:@"sqrt"]){
+        //double divisor = [self popOperand];
+        result = sqrt([self popOperand]);
+    } else if([operation isEqualToString:@"log"]){
+        //double divisor = [self popOperand];
+        result = log([self popOperand]);
+    } else if([operation isEqualToString:@"PI"]){
+        //double divisor = [self popOperand];       ///∏∏
+        result = PI;
+    }
+    
+    [self pushOperand:result];
     
     return result;
 }
