@@ -87,7 +87,7 @@
         //double divisor = [self popOperand];
         result = log([self popOperand]);
     } else if([operation isEqualToString:@"PI"]){
-        //double divisor = [self popOperand];       ///∏∏
+        //double divisor = [self popOperand];
         result = PI;
     }
     

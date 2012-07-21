@@ -35,7 +35,8 @@
             NSString *dspString = self.display.text;
             NSLog(@"user touched %@", dspString);
             NSRange range = [dspString rangeOfString:@"."];
-            NSLog(@"user touched %g", range);
+            NSLog(@"user touched %@", range);
+            
             if (range.location == NSNotFound){
                 self.display.text = [self.display.text stringByAppendingFormat:digit];
                 self.smalldisplay.text = [self.smalldisplay.text stringByAppendingFormat:digit];

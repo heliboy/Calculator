@@ -19,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C16C7DB1552A70F0006C029 /* Calculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Calculator.entitlements; sourceTree = "<group>"; };
 		6C30D75B14E475D200B8AC4C /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C30D75F14E475D200B8AC4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6C30D76114E475D200B8AC4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -80,6 +81,7 @@
 		6C30D76514E475D200B8AC4C /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				6C16C7DB1552A70F0006C029 /* Calculator.entitlements */,
 				6C30D77C14E584AD00B8AC4C /* CalculatorBrain.h */,
 				6C30D77D14E584AD00B8AC4C /* CalculatorBrain.m */,
 				6C30D76E14E475D300B8AC4C /* CalculatorAppDelegate.h */,
@@ -129,7 +131,7 @@
 		6C30D75214E475D200B8AC4C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Telefonica O2 Uk";
 			};
 			buildConfigurationList = 6C30D75514E475D200B8AC4C /* Build configuration list for PBXProject "Calculator" */;
@@ -243,10 +245,12 @@
 		6C30D77A14E475D300B8AC4C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Calculator/Calculator.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calculator/Calculator-Prefix.pch";
 				INFOPLIST_FILE = "Calculator/Calculator-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -258,6 +262,7 @@
 				GCC_PREFIX_HEADER = "Calculator/Calculator-Prefix.pch";
 				INFOPLIST_FILE = "Calculator/Calculator-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
